@@ -3,10 +3,10 @@
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-LBVERSION="4.10.0"
+LBVERSION="4.11.0"
 JDBC_SNOWFLAKE="3.13.18"
-JDBC_REDSHIFT="2.1.0.7"
-JDBC_BIGQUERY="1.2.22.1026"
+JDBC_REDSHIFT="2.1.0.9"
+JDBC_BIGQUERY="1.2.25.1029"
 
 # download liquibase
 LBFILE="liquibase-${LBVERSION}.zip"

@@ -3,28 +3,21 @@ Magnitude Simba Google BigQuery JDBC Data Connector Release Notes
 ============================================================================== 
 
 The release notes provide details of enhancements, features, known issues, and 
-workflow changes in Simba Google BigQuery JDBC Connector 1.2.22, as well as 
+workflow changes in Simba Google BigQuery JDBC Connector 1.2.25, as well as 
 the version history. 
 
 
-1.2.22 =======================================================================
+1.2.25 =======================================================================
 
-Released 2022-02-07
+Released 2022-06-10
 
-Enhancements & New Features 
- 
- * [GBQJ-466][GBQJ-488][GBQJ-525][GBQJ-526][GBQJ-535] Third-party library 
-   updates
+Resolved Issues
+The following issue has been resolved in Simba Google BigQuery JDBC Connector 
+1.2.25.
 
-   The connector has been updated with the following third-party libraries:
-   - google-cloud-bigquerystorage 2.8.3 (previously 2.5.1)
-   - avro 1.11.0 (previously 1.10.2)
-   - commons-compress 1.21 (previously 1.20)
-   
- * [GBQJ-524] Internal connector improvements
+ * [GBQJ-568] In some cases, when executing a complex long query, the 
+   connector returns a stack overflow error.
 
-   The connector has been updated with minor internal improvements. 
- 
 
 Known Issues
 The following are known issues that you may encounter due to limitations in
@@ -112,6 +105,42 @@ The following changes may disrupt established workflows for the connector.
 
 
 Version History ==============================================================
+
+1.2.23 -----------------------------------------------------------------------
+
+Released 2022-04-28
+
+Resolved Issues
+The following issue has been resolved in Simba Google BigQuery JDBC Connector 
+1.2.23.
+
+ * [GBQJ-544][GBQJ-553][GBQJ-555] In some cases, when executing a query, and a
+   server error is returned, the connector executes a request with a timeout 
+   that exceeds the Java socket timeout, causing the socket to expire before 
+   the connector timeout is reached.
+
+   This issue has been resolved. The connector now uses a small API timeout
+   for the request and uses exponential backoff to meet the timeout limit.
+   
+
+1.2.22 -----------------------------------------------------------------------
+
+Released 2022-02-07
+
+Enhancements & New Features 
+ 
+ * [GBQJ-466][GBQJ-488][GBQJ-525][GBQJ-526][GBQJ-535] Third-party library 
+   updates
+
+   The connector has been updated with the following third-party libraries:
+   - google-cloud-bigquerystorage 2.8.3 (previously 2.5.1)
+   - avro 1.11.0 (previously 1.10.2)
+   - commons-compress 1.21 (previously 1.20)
+   
+ * [GBQJ-524] Internal connector improvements
+
+   The connector has been updated with minor internal improvements. 
+   
 
 1.2.21 -----------------------------------------------------------------------
 
@@ -425,73 +454,6 @@ BigQuery 1.2.12.
 
  * [GBQJ-393] When you authenticate the connection using User Authentication 
    (OAuthType=1), the driver terminates unexpectedly. 
-   
-
-1.2.11 -----------------------------------------------------------------------
-
-Released 2020-08-28
-
-Enhancements & New Features 
-
- * [GBQJ-373] Avro library update
- 
-   The driver now uses Avro version 1.10. Previously, the driver used version 
-   1.9.
-
- * [GBQJ-376] Updated HT API configuration
- 
-   For anonymous tables, utilizing storage API is free and the driver now 
-   ignores the HT API ON/OFF flag in the configuration. 
-
-
-Resolved Issues
-The following issues have been resolved in Simba JDBC Driver for Google 
-BigQuery 1.2.11.
-
- * [GBQJ-366] In some cases, when calling executeQuery() for a result set, 
-   the driver returns an error. 
-
- * [GBQJ-371] When retrying failed queries, the driver encounters a rate 
-   limit. 
- 
-   This issue has been resolved. The driver now retries failed queries
-   using an exponential back-off mechanism. 
-   
- * [GBQJ-375] The driver ignores the StringColumnLength property. 
-
- * [GBQJ-378] The DSI_MULT_RESULT_SETS connection property returns false 
-   instead of true. 
-   
- * [GBQJ-383] When using prepared statements to set null parameters for string
-   datatypes, the driver returns a null pointer exception.
- 
- 
-1.2.8 ------------------------------------------------------------------------
-
-Released 2020-07-17
-
-Enhancements & New Features 
-
- * [GBQJ-351] Location restrictions for datasets
-
-   You can now specify a location for the driver, so that the driver only 
-   queries datasets in that location. To do this, set the Location property to 
-   the name of the dataset location. For more information, see the 
-   Installation and Configuration Guide.
-
-
-Resolved Issues
-The following issues have been resolved in Simba JDBC Driver for Google 
-BigQuery 1.2.8.
-
- * [GBQJ-359] In some cases, queries that include a newline before certain DDL 
-   or DML keywords cause an exception.
-
- * [GBQJ-361] The getCatalogs() metadata function returns only the first 50 
-   projects.
-
-   This issue has been resolved. The getCatalogs() function now returns all 
-   projects.
 
 
 ============================================================================== 
